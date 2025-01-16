@@ -1,0 +1,2400 @@
+type: panel
+icon: mdi:headphones
+path: sonos
+cards:
+  - type: custom:button-card
+    show-state: false
+    show-name: false
+    custom_fields:
+      bmbeats:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.bm_beats
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    bm:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.majaiden
+                        show_state: false
+                        show_name: false
+                        size: null
+                        styles:
+                          card:
+                            - background: url("/local/pictures/B&M Beats.jpg")
+                            - background-size: 100% 100%
+                            - background-position: center
+                            - background-repeat: no-repeat
+                            - opacity: 100%
+                            - height: 280px
+                            - width: 280px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2)
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 280px
+                      - height: 280px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      bm:
+                        - position: absolute
+                        - top: 0px
+                        - left: 0px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+            "off":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show_state: false
+                  show_name: false
+                  show_icon: false
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                      - height: 0px
+                      - padding: 0px
+      ctrlplayer4:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.ctrlplayer4
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:mini-media-player
+                  artwork: none
+                  sound_mode: icon
+                  info: scroll
+                  entity: media_player.kamiel
+                  icon: blank
+                  source: icon
+                  volume_stateless: false
+                  group: false
+                  hide:
+                    source: true
+                    group_button: true
+                    icon: true
+                    progress: true
+                  card_mod:
+                    style: |
+                      ha-card {
+                        margin: 0px 0px -20px 0px;
+                        --mmp-icon-color: #c0c0c0 !important;
+                        --md-slider-inactive-track-color: #c0c0c0;
+                        --md-slider-active-track-color: rgb(234, 38, 138);
+                        --md-slider-handle-color: rgb(234, 38, 138);
+                        color: #c0c0c0 !important;
+                        --accent-color: #c0c0c0;
+                        --primary-color: #c0c0c0;
+                        --secondary-text-color: #c0c0c0;
+                        box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ctrlplayer3:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.ctrlplayer3
+          default: "off"
+          transition: swap-right
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:mini-media-player
+                  artwork: none
+                  sound_mode: icon
+                  info: scroll
+                  entity: media_player.basiel
+                  icon: blank
+                  source: icon
+                  volume_stateless: false
+                  group: false
+                  hide:
+                    source: true
+                    group_button: true
+                    icon: true
+                    progress: true
+                  card_mod:
+                    style: |
+                      ha-card {
+                        margin: 0px 0px -20px 0px;
+                        --mmp-icon-color: #c0c0c0 !important;
+                        --md-slider-inactive-track-color: #c0c0c0;
+                        --md-slider-active-track-color: rgb(234, 38, 138);
+                        --md-slider-handle-color: rgb(234, 38, 138);
+                        color: #c0c0c0 !important;
+                        --accent-color: #c0c0c0;
+                        --primary-color: #c0c0c0;
+                        --secondary-text-color: #c0c0c0;
+                        box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ctrlplayer2:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.ctrlplayer2
+          default: "off"
+          transition: swap-right
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:mini-media-player
+                  artwork: none
+                  sound_mode: icon
+                  info: scroll
+                  entity: media_player.sean
+                  icon: blank
+                  source: icon
+                  volume_stateless: false
+                  group: false
+                  hide:
+                    source: true
+                    group_button: true
+                    icon: true
+                    progress: true
+                  card_mod:
+                    style: |
+                      ha-card {
+                        margin: 0px 0px -20px 0px;
+                        --mmp-icon-color: #c0c0c0 !important;
+                        --md-slider-inactive-track-color: #c0c0c0;
+                        --md-slider-active-track-color: rgb(234, 38, 138);
+                        --md-slider-handle-color: rgb(234, 38, 138);
+                        color: #c0c0c0 !important;
+                        --accent-color: #c0c0c0;
+                        --primary-color: #c0c0c0;
+                        --secondary-text-color: #c0c0c0;
+                        box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ctrlplayer1:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.ctrlplayer1
+          default: "off"
+          transition: swap-up
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:mini-media-player
+                  artwork: none
+                  sound_mode: icon
+                  info: scroll
+                  entity: media_player.woonkamer
+                  icon: blank
+                  source: icon
+                  volume_stateless: false
+                  group: false
+                  hide:
+                    source: true
+                    group_button: true
+                    icon: true
+                    progress: true
+                  card_mod:
+                    style: |
+                      ha-card {
+                        margin: 0px 0px -20px 0px;
+                        --mmp-icon-color: #c0c0c0 !important;
+                        --md-slider-inactive-track-color: #c0c0c0;
+                        --md-slider-active-track-color: rgb(234, 38, 138);
+                        --md-slider-handle-color: rgb(234, 38, 138);
+                        color: #c0c0c0 !important;
+                        --accent-color: #c0c0c0;
+                        --primary-color: #c0c0c0;
+                        --secondary-text-color: #c0c0c0;
+                        box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      settingkamiel:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.mactrlian
+          default: "off"
+          transition: swap-up
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    slider:
+                      card:
+                        type: entities
+                        entities:
+                          - type: custom:slider-entity-row
+                            entity: number.kamiel_balans
+                            full_row: false
+                            toggle: false
+                            hide_state: false
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                            name: Balance
+                            icon: mdi:blank
+                          - entity: number.kamiel_bas
+                            name: Bass
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.kamiel_hoge_tonen
+                            name: Treble
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent !important;
+                            }
+                            :host {
+                              --primary-text-color: rgb(227, 253, 252) !important;
+                            }
+                    buttons:
+                      card:
+                        type: horizontal-stack
+                        cards:
+                          - type: custom:button-card
+                            entity: switch.kamiel_loudness
+                            show_state: false
+                            name: loudness
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.kamiel_loudness'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.kamiel_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.kamiel_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: switch.kamiel_crossfade
+                            show_state: false
+                            name: Crossfade
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.kamiel_crossfade'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.kamiel_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.kamiel_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                  styles:
+                    card:
+                      - padding: 2px
+                      - width: 310px
+                      - height: 250px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      buttons:
+                        - position: absolute
+                        - top: 160px
+                        - left: 40px
+                        - width: 380px
+                        - height: 260px
+                        - border-radius: 15%
+                        - border: none
+                      slider:
+                        - position: absolute
+                        - top: "-2px"
+                        - left: "-50px"
+                        - width: 350px
+                        - height: 150px
+                        - border-radius: 15%
+                        - border: none
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      settingbasiel:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.mactrljaiden
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    slider:
+                      card:
+                        type: entities
+                        entities:
+                          - type: custom:slider-entity-row
+                            entity: number.basiel_balans
+                            full_row: false
+                            toggle: false
+                            hide_state: false
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                            name: Balance
+                            icon: mdi:blank
+                          - entity: number.basiel_bas
+                            name: Bass
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.basiel_hoge_tonen
+                            name: Treble
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent !important;
+                            }
+                            :host {
+                              --primary-text-color: rgb(227, 253, 252) !important;
+                            }
+                    buttons:
+                      card:
+                        type: horizontal-stack
+                        cards:
+                          - type: custom:button-card
+                            entity: switch.basiel_loudness
+                            show_state: false
+                            name: loudness
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.basiel_loudness'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.basiel_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.basiel_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: switch.basiel_crossfade
+                            show_state: false
+                            name: Crossfade
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.basiel_crossfade'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.basiel_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.basiel_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                  styles:
+                    card:
+                      - padding: 2px
+                      - width: 310px
+                      - height: 250px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      buttons:
+                        - position: absolute
+                        - top: 160px
+                        - left: 40px
+                        - width: 380px
+                        - height: 260px
+                        - border-radius: 15%
+                        - border: none
+                      slider:
+                        - position: absolute
+                        - top: "-2px"
+                        - left: "-50px"
+                        - width: 350px
+                        - height: 150px
+                        - border-radius: 15%
+                        - border: none
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      settingsean:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.mactrlsean
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    slider:
+                      card:
+                        type: entities
+                        entities:
+                          - type: custom:slider-entity-row
+                            entity: number.sean_balans
+                            full_row: false
+                            toggle: false
+                            hide_state: false
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                            name: Balance
+                            icon: mdi:blank
+                          - entity: number.sean_bas
+                            name: Bass
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.sean_hoge_tonen
+                            name: Treble
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent !important;
+                            }
+                            :host {
+                              --primary-text-color: rgb(227, 253, 252) !important;
+                            }
+                    buttons:
+                      card:
+                        type: horizontal-stack
+                        cards:
+                          - type: custom:button-card
+                            entity: switch.sean_loudness
+                            show_state: false
+                            name: loudness
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.sean_loudness'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.sean_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.sean_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: switch.sean_crossfade
+                            show_state: false
+                            name: Crossfade
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.sean_crossfade'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.sean_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.sean_crossfade'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: sensor.sean_batterij
+                            show_state: true
+                            name: Battery
+                            icon: mdi:battery
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['sensor.sean_batterij'].state == 'Charging') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['sensor.sean_batterij'].state == 'Charging')  return 'rgb(227, 253, 252)';
+                                      return 'rgb(227, 253, 252)';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['sensor.sean_batterij'].state == 'Charging')  return 'rgb(227, 253, 252)';
+                                      return 'rgb(227, 253, 252)';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                              state:
+                                - color: |
+                                    [[[
+                                      if (states['sensor.sean_batterij'].state == 'Charging')  return 'rgb(227, 253, 252)';
+                                      return 'rgb(227, 253, 252)';
+                                    ]]]                      
+                  styles:
+                    card:
+                      - padding: 2px
+                      - width: 350px
+                      - height: 250px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      buttons:
+                        - position: absolute
+                        - top: 160px
+                        - left: 16px
+                        - width: 380px
+                        - height: 260px
+                        - border-radius: 15%
+                        - border: none
+                      slider:
+                        - position: absolute
+                        - top: "-2px"
+                        - left: "-40px"
+                        - width: 350px
+                        - height: 150px
+                        - border-radius: 15%
+                        - border: none
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      settingswoonkamer:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.mactrlsliving
+          default: "off"
+          transition: swap-up
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    slider:
+                      card:
+                        type: entities
+                        entities:
+                          - type: custom:slider-entity-row
+                            entity: number.woonkamer_audiovertraging
+                            full_row: false
+                            toggle: false
+                            hide_state: false
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                            name: Delay
+                            icon: mdi:blank
+                          - type: custom:slider-entity-row
+                            entity: number.woonkamer_balans
+                            full_row: false
+                            toggle: false
+                            hide_state: false
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                            name: Balance
+                            icon: mdi:blank
+                          - entity: number.woonkamer_bas
+                            name: Bass
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.woonkamer_muziek_surround_niveau
+                            name: Music Surround
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.woonkamer_surroundniveau
+                            name: Surround Level
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                          - entity: number.woonkamer_hoge_tonen
+                            name: Treble
+                            full_row: false
+                            toggle: false
+                            hide_state: true
+                            icon: mdi:blank
+                            card_mod:
+                              style: |
+                                ha-slider {
+                                  --md-sys-color-primary: rgb(234, 38, 138);
+                                  --_handle-color: rgb(234, 38, 138);
+                                  --_pressed-handle-color: rgb(227, 253, 252);
+                                  --_focus-handle-color: rgb(227, 253, 252);
+                                  --_active-track-color: rgb(234, 38, 138);
+                                  --_inactive-track-color: transparent;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent !important;
+                            }
+                            :host {
+                              --primary-text-color: rgb(227, 253, 252) !important;
+                            }
+                    buttons:
+                      card:
+                        type: horizontal-stack
+                        cards:
+                          - type: custom:button-card
+                            entity: switch.woonkamer_loudness
+                            show_state: false
+                            name: loudness
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.woonkamer_loudness'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_loudness'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: switch.woonkamer_surround_enabled
+                            show_state: false
+                            name: Surround
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.woonkamer_surround_ingeschakeld'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_surround_ingeschakeld'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_surround_ingeschakeld'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                          - type: custom:button-card
+                            entity: switch.woonkamer_night_sound
+                            show_state: false
+                            name: Night
+                            icon: mdi:tune
+                            layout: vertical
+                            tap_action:
+                              action: toggle
+                            styles:
+                              card:
+                                - height: 80px
+                                - width: 100px
+                                - border-radius: 20%
+                                - background: transparent
+                                - padding: 5px
+                                - box-shadow: |
+                                    [[[
+                                      if (states['switch.woonkamer_nachtgeluid'].state == 'on') 
+                                        return '0 0px 6px rgba(234, 37, 138, 0.8)';
+                                      return '0 4px 6px rgba(0, 0, 0, 0.2)';
+                                    ]]]
+                              name:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_nachtgeluid'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                              icon:
+                                - color: |
+                                    [[[
+                                      if (states['switch.woonkamer_nachtgeluid'].state == 'on') return 'rgb(227, 253, 252)';
+                                      return '#2c2c2c';
+                                    ]]]
+                                - height: 100px
+                                - width: 100px
+                  styles:
+                    card:
+                      - padding: 2px
+                      - width: 350px
+                      - height: 380px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      buttons:
+                        - position: absolute
+                        - top: 290px
+                        - left: 20px
+                        - width: 380px
+                        - height: 260px
+                        - border-radius: 15%
+                        - border: none
+                      slider:
+                        - position: absolute
+                        - top: "-15px"
+                        - left: "-55px"
+                        - width: 400px
+                        - height: 290px
+                        - border-radius: 15%
+                        - border: none
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      controlsmenu:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.macontrolsmenu
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    exit:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.macontrolsmenu
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:exit-to-app
+                        name: Close Menu
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    woonkamer:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.mactrlsliving
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:tune
+                        name: Living
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    badkamer:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.mactrlsean
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:tune
+                        name: Sean
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    kamiel:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.mactrlian
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:tune
+                        name: Ian
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    basiel:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.mactrljaiden
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:tune
+                        name: Jaiden
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    allemaal:
+                      card:
+                        type: custom:button-card
+                        layout: vertical
+                        entity: input_boolean.mactrlall
+                        tap_action:
+                          action: toggle
+                        icon: mdi:tune
+                        name: All Players
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 280px
+                      - height: 280px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      exit:
+                        - position: absolute
+                        - top: 185px
+                        - left: 150px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+                      kamiel:
+                        - position: absolute
+                        - top: 105px
+                        - left: 150px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+                      badkamer:
+                        - position: absolute
+                        - top: 25px
+                        - left: 150px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+                      basiel:
+                        - position: absolute
+                        - top: 105px
+                        - left: 10px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+                      woonkamer:
+                        - position: absolute
+                        - top: 25px
+                        - left: 10px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+                      allemaal:
+                        - position: absolute
+                        - top: 185px
+                        - left: 10px
+                        - width: 30px
+                        - height: 20px
+                        - border-radius: 15%
+            "off":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show_state: false
+                  show_name: false
+                  show_icon: false
+                  styles:
+                    card:
+                      - background: transparent
+                      - box-shadow: none
+                      - height: 0px
+                      - padding: 0px
+      menu:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.mamenu
+          default: "off"
+          transition: swap-left
+          transition_time: 500
+          states:
+            "off":
+              type: custom:button-card
+              show_icon: false
+              show_name: false
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    home:
+                      card:
+                        type: custom:button-card
+                        layout: vertical
+                        icon: mdi:close
+                        tap_action:
+                          action: navigate
+                          navigation_path: /dashboard-galaxytab/home
+                        name: Exit
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    exit:
+                      card:
+                        type: custom:button-card
+                        layout: vertical
+                        icon: mdi:arrow-expand-left
+                        entity: input_boolean.mamenu
+                        tap_action:
+                          action: toggle
+                        name: Hide Menu
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    radio:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.maradio
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:radio
+                        name: Radio
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    queue:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.maqueue
+                        layout: vertical
+                        tap_action:
+                          action: toggle
+                        icon: mdi:queue-first-in-last-out
+                        name: Queue
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    group:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.magroup
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:speaker-multiple
+                        name: Group
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    controls:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.macontrolsmenu
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:tune
+                        name: Controls
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    search:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.masearch
+                        tap_action:
+                          action: toggle
+                        layout: vertical
+                        icon: mdi:magnify
+                        name: Search
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 140px
+                      - height: 575px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      home:
+                        - position: absolute
+                        - top: 490px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      exit:
+                        - position: absolute
+                        - top: 10px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      radio:
+                        - position: absolute
+                        - top: 170px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      queue:
+                        - position: absolute
+                        - top: 250px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      group:
+                        - position: absolute
+                        - top: 330px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      search:
+                        - position: absolute
+                        - top: 90px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+                      controls:
+                        - position: absolute
+                        - top: 410px
+                        - left: 10px
+                        - width: 120px
+                        - height: 70px
+                        - border-radius: 15%
+      menuicon:
+        card:
+          type: custom:button-card
+          entity: input_boolean.mamenu
+          icon: mdi:menu
+          show_name: false
+          show_state: false
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - background: transparent
+              - height: 100px
+              - width: 100px
+              - border: none
+            icon:
+              - height: 70px
+              - width: 70px
+          state:
+            - value: "on"
+              styles:
+                icon:
+                  - color: rgba(255, 255, 255, 0.2)
+                  - height: 0px
+            - value: "off"
+              styles:
+                icon:
+                  - color: rgb(227, 253, 252)
+      player4:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.masean
+          default: "off"
+          transition: flip
+          transition_time: 900
+          states:
+            "on":
+              type: custom:sonos-card
+              sections:
+                - player
+              mediaBrowserItemsPerRow: 3
+              predefinedGroups: null
+              mediaArtworkOverrides:
+                - ifMissing: false
+              entityId: media_player.sean
+              showVolumeUpAndDownButtons: false
+              title: Sean
+              startSection: player
+              hidePlayerControlPowerButton: false
+              entities:
+                - media_player.sean
+              topFavorites:
+                - ""
+              hideGroupCurrentTrack: false
+              artworkAsBackground: false
+              hideVolumeCogwheel: true
+              hidePlaylistInPlayer: true
+              hidePlayerControlShuffleButton: false
+              hidePlayerControlPrevTrackButton: false
+              hidePlayerControlNextTrackButton: false
+              hidePlayerControlRepeatButton: false
+              showAudioInputFormat: false
+              card_mod:
+                style: |
+                  ha-card {
+                    color: #c0c0c0 !important;
+                    background: #1C1C1C;
+                    --accent-color: #c0c0c0;
+                    --primary-color: #c0c0c0;
+                    --secondary-text-color: #c0c0c0;
+                    box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                  }
+                  ha-card::before {
+                    content: "";
+                    background-image: url('{{ state_attr("media_player.sean", "entity_picture") }}');
+                    background-size: cover;
+                    background-position: left;
+                    filter: blur(20px) brightness(30%) saturate(4);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                  }
+                  ha-card > * {
+                    position: relative;
+                    z-index: 2;
+                  }
+                  :host {
+                    --secondary-text-color: white !important;
+                  }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+      player3:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.majaiden
+          default: "off"
+          transition: flip
+          transition_time: 900
+          states:
+            "on":
+              type: custom:sonos-card
+              sections:
+                - player
+              mediaBrowserItemsPerRow: 3
+              predefinedGroups: null
+              mediaArtworkOverrides:
+                - ifMissing: false
+              entityId: media_player.basiel
+              showVolumeUpAndDownButtons: false
+              title: Jaiden
+              startSection: player
+              hidePlayerControlPowerButton: false
+              entities:
+                - media_player.basiel
+              topFavorites:
+                - ""
+              hideGroupCurrentTrack: false
+              artworkAsBackground: false
+              hideVolumeCogwheel: true
+              hidePlaylistInPlayer: true
+              hidePlayerControlShuffleButton: false
+              hidePlayerControlPrevTrackButton: false
+              hidePlayerControlNextTrackButton: false
+              hidePlayerControlRepeatButton: false
+              showAudioInputFormat: false
+              card_mod:
+                style: |
+                  ha-card {
+                    color: #c0c0c0 !important;
+                    background: #1C1C1C;
+                    --accent-color: #c0c0c0;
+                    --primary-color: #c0c0c0;
+                    --secondary-text-color: #c0c0c0;
+                    box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                  }
+                  ha-card::before {
+                    content: "";
+                    background-image: url('{{ state_attr("media_player.basiel", "entity_picture") }}');
+                    background-size: cover;
+                    background-position: left;
+                    filter: blur(20px) brightness(30%) saturate(4);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                  }
+                  ha-card > * {
+                    position: relative;
+                    z-index: 2;
+                  }
+                  :host {
+                    --secondary-text-color: white !important;
+                  }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+      player2:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.maian
+          default: "off"
+          transition: flip
+          transition_time: 900
+          states:
+            "on":
+              type: custom:sonos-card
+              sections:
+                - player
+              mediaBrowserItemsPerRow: 3
+              predefinedGroups: null
+              mediaArtworkOverrides:
+                - ifMissing: false
+              entityId: media_player.woonkamer
+              showVolumeUpAndDownButtons: false
+              title: Ian
+              startSection: player
+              hidePlayerControlPowerButton: false
+              entities:
+                - media_player.kamiel
+              topFavorites:
+                - ""
+              hideGroupCurrentTrack: false
+              artworkAsBackground: false
+              hideVolumeCogwheel: true
+              hidePlaylistInPlayer: true
+              hidePlayerControlShuffleButton: false
+              hidePlayerControlPrevTrackButton: false
+              hidePlayerControlNextTrackButton: false
+              hidePlayerControlRepeatButton: false
+              showAudioInputFormat: false
+              card_mod:
+                style: |
+                  ha-card {
+                    color: #c0c0c0 !important;
+                    background: #1C1C1C;
+                    --accent-color: #c0c0c0;
+                    --primary-color: #c0c0c0;
+                    --secondary-text-color: #c0c0c0;
+                    box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                  }
+                  ha-card::before {
+                    content: "";
+                    background-image: url('{{ state_attr("media_player.kamiel", "entity_picture") }}');
+                    background-size: cover;
+                    background-position: left;
+                    filter: blur(20px) brightness(30%) saturate(4);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                  }
+                  ha-card > * {
+                    position: relative;
+                    z-index: 2;
+                  }
+                  :host {
+                    --secondary-text-color: white !important;
+                  }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+      player1:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.maliving
+          default: "off"
+          transition: flip
+          transition_time: 900
+          states:
+            "on":
+              type: custom:sonos-card
+              sections:
+                - player
+              mediaBrowserItemsPerRow: 3
+              predefinedGroups: null
+              mediaArtworkOverrides:
+                - ifMissing: false
+              entityId: media_player.woonkamer
+              showVolumeUpAndDownButtons: false
+              title: Living
+              startSection: player
+              hidePlayerControlPowerButton: false
+              entities:
+                - media_player.woonkamer
+              topFavorites:
+                - ""
+              hideGroupCurrentTrack: false
+              artworkAsBackground: false
+              hideVolumeCogwheel: true
+              hidePlaylistInPlayer: true
+              hidePlayerControlShuffleButton: false
+              hidePlayerControlPrevTrackButton: false
+              hidePlayerControlNextTrackButton: false
+              hidePlayerControlRepeatButton: false
+              showAudioInputFormat: false
+              card_mod:
+                style: |
+                  ha-card {
+                    color: #c0c0c0 !important;
+                    background: #1C1C1C;
+                    --accent-color: #c0c0c0;
+                    --primary-color: #c0c0c0;
+                    --secondary-text-color: #c0c0c0;
+                    box-shadow: 0px 0px 20px rgb(227, 253, 252) !important;
+                  }
+                  ha-card::before {
+                    content: "";
+                    background-image: url('{{ state_attr("media_player.woonkamer", "entity_picture") }}');
+                    background-size: cover;
+                    background-position: left;
+                    filter: blur(20px) brightness(30%) saturate(4);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                  }
+                  ha-card > * {
+                    position: relative;
+                    z-index: 2;
+                  }
+                  :host {
+                    --secondary-text-color: white !important;
+                  }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+      favorites:
+        card:
+          type: custom:button-card
+          entity: input_boolean.mafavoriet
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/favorieten.jpg
+          show_entity_picture: true
+          size: 100px
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - padding: 5px
+              - animation: slide-in-top 1.7s ease-out both
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgb(234, 38, 138)
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgb(255, 215, 0)
+          card_mod:
+            style: |
+              @keyframes slide-in-top {
+                0% {
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+                100% {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }              
+      ma:
+        card:
+          type: custom:button-card
+          entity: input_boolean.mamusicassistant
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/mas.png
+          show_entity_picture: true
+          size: 80px
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - box-shadow: 0px 0px 10px rgb(255, 215, 0)
+              - padding: 0px
+              - animation: slide-in-top 1.7s ease-out both
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgba(234, 38, 138, 1)
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgba(255, 215, 0, 1)
+          card_mod:
+            style: |
+              @keyframes slide-in-top {
+                0% {
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+                100% {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+      jaiden:
+        card:
+          type: custom:button-card
+          entity: input_boolean.majaiden
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/Sonos Jaiden.png
+          show_entity_picture: true
+          size: null
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - padding: 5px
+              - animation: slide-in-bottom 1.7s ease-out
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgba(234, 38, 138, 1)
+                  - animation: |
+                      [[[ 
+                        return states['media_player.basiel'].state === 'playing' 
+                          ? 'slide-in-bottom 1.7s ease-out, pulsate 2s infinite' 
+                          : 'slide-in-bottom 1.7s ease-out'; 
+                      ]]]
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgba(255, 215, 0, 1)
+                  - animation: slide-in-bottom 1.7s ease-out
+          card_mod:
+            style: |
+              @keyframes pulsate {
+                0% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+                50% {
+                  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+                }
+                100% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+              }
+              @keyframes slide-in-bottom {
+                from {
+                  transform: translateY(100%);
+                  opacity: 0;
+                }
+                to {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+      ian:
+        card:
+          type: custom:button-card
+          entity: input_boolean.maian
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/Sonos Ian.png
+          show_entity_picture: true
+          size: null
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - padding: 5px
+              - animation: slide-in-bottom 1.7s ease-out
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgba(234, 38, 138, 1)
+                  - animation: |
+                      [[[ 
+                        return states['media_player.kamiel'].state === 'playing' 
+                          ? 'slide-in-bottom 1.7s ease-out, pulsate 2s infinite' 
+                          : 'slide-in-bottom 1.7s ease-out'; 
+                      ]]]
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgba(255, 215, 0, 1)
+                  - animation: slide-in-bottom 1.7s ease-out
+          card_mod:
+            style: |
+              @keyframes pulsate {
+                0% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+                50% {
+                  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+                }
+                100% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+              }
+              @keyframes slide-in-bottom {
+                from {
+                  transform: translateY(100%);
+                  opacity: 0;
+                }
+                to {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+      living:
+        card:
+          type: custom:button-card
+          entity: input_boolean.maliving
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/living.png
+          show_entity_picture: true
+          size: null
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - padding: 5px
+              - animation: slide-in-left 1.7s ease-out
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgba(234, 38, 138, 1)
+                  - animation: |
+                      [[[ 
+                        return 'slide-in-left 1.7s ease-out, pulsate 2s infinite'; 
+                      ]]]
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgba(255, 215, 0, 1)
+                  - animation: slide-in-left 1.7s ease-out
+          card_mod:
+            style: |
+              @keyframes slide-in-left {
+                from {
+                  transform: translateX(-100%);
+                  opacity: 0;
+                }
+                to {
+                  transform: translateX(0);
+                  opacity: 1;
+                }
+              }
+              @keyframes pulsate {
+                0% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+                50% {
+                  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+                }
+                100% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+              }
+      sean:
+        card:
+          type: custom:button-card
+          entity: input_boolean.masean
+          show_state: false
+          show_name: false
+          entity_picture: /local/pictures/Sean.png
+          show_entity_picture: true
+          size: null
+          layout: vertical
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - height: 100px
+              - width: 100px
+              - border-radius: 50%
+              - background: "#1C1C1C"
+              - border: none
+              - padding: 5px
+              - animation: slide-in-left 1.7s ease-out
+            entity_picture:
+              - filter: brightness(80%)
+          state:
+            - value: "on"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 20px rgba(234, 38, 138, 1)
+                  - animation: |
+                      [[[ 
+                        return states['media_player.woonkamer'].state === 'playing' 
+                          ? 'slide-in-left 1.7s ease-out, pulsate 2s infinite' 
+                          : 'slide-in-left 1.7s ease-out'; 
+                      ]]]
+            - value: "off"
+              styles:
+                card:
+                  - box-shadow: 0px 0px 10px rgba(255, 215, 0, 1)
+                  - animation: slide-in-left 1.7s ease-out
+          card_mod:
+            style: |
+              @keyframes pulsate {
+                0% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+                50% {
+                  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+                }
+                100% {
+                  box-shadow: 0 0 10px rgba(234, 38, 138, 0.5);
+                }
+              }
+              @keyframes slide-in-left {
+                from {
+                  transform: translateX(-100%);
+                  opacity: 0;
+                }
+                to {
+                  transform: translateX(0);
+                  opacity: 1;
+                }
+              }
+    styles:
+      card:
+        - padding: 5px
+        - align-self: start
+        - width: 1270px
+        - height: 750px
+        - opacity: 1
+        - background-color: transparent
+      custom_fields:
+        ctrlplayer4:
+          - position: absolute
+          - top: 440px
+          - right: 15px
+          - width: 480px
+          - height: 100px
+          - border-radius: 35%
+          - borders: none
+        ctrlplayer3:
+          - position: absolute
+          - top: 320px
+          - right: 15px
+          - width: 480px
+          - height: 100px
+          - border-radius: 15%
+          - borders: none
+        ctrlplayer2:
+          - position: absolute
+          - top: 200px
+          - right: 15px
+          - width: 480px
+          - height: 100px
+          - border-radius: 35%
+          - borders: none
+        ctrlplayer1:
+          - position: absolute
+          - top: 80px
+          - right: 15px
+          - width: 480px
+          - height: 100px
+          - border-radius: 15%
+          - borders: none
+        settingkamiel:
+          - position: absolute
+          - top: 1px
+          - right: 15px
+          - width: 480px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        settingbasiel:
+          - position: absolute
+          - top: 400px
+          - right: 15px
+          - width: 480px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        settingsean:
+          - position: absolute
+          - top: 400px
+          - right: 15px
+          - width: 480px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        settingswoonkamer:
+          - position: absolute
+          - top: 1px
+          - right: 15px
+          - width: 480px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        bmbeats:
+          - position: absolute
+          - top: 150px
+          - left: 430px
+          - width: 280px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        controlsmenu:
+          - position: absolute
+          - top: 150px
+          - left: 430px
+          - width: 280px
+          - height: 150px
+          - border-radius: 15%
+          - borders: none
+        menu:
+          - position: absolute
+          - top: 50px
+          - left: 15px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        menuicon:
+          - position: absolute
+          - top: "-10px"
+          - left: 10px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        jaiden:
+          - position: absolute
+          - top: 470px
+          - left: 340px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        ian:
+          - position: absolute
+          - top: 510px
+          - left: 520px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        living:
+          - position: absolute
+          - top: 315px
+          - left: 230px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        sean:
+          - position: absolute
+          - top: 145px
+          - left: 250px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        ma:
+          - position: absolute
+          - top: 35px
+          - left: 360px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        favorites:
+          - position: absolute
+          - top: 5px
+          - left: 520px
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        player1:
+          - position: absolute
+          - top: 5px
+          - left: 745px
+          - width: 470px
+          - height: 365px
+          - border-radius: 5%
+        player2:
+          - position: absolute
+          - top: 5px
+          - left: 745px
+          - width: 470px
+          - height: 330px
+          - border-radius: 55%
+        player3:
+          - position: absolute
+          - top: 5px
+          - left: 745px
+          - width: 470px
+          - height: 330px
+          - border-radius: 55%
+        player4:
+          - position: absolute
+          - top: 5px
+          - left: 745px
+          - width: 470px
+          - height: 330px
+          - border-radius: 55%
+background:
+  image: /api/image/serve/e99484961fa0b6cd2fb5acc879169a54/original
+visible:
+  - user: 4a566592414f437ebecd4cd0240c818e
+  - user: f36a71f4c6654b5e893e15ab6118af04
