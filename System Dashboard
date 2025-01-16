@@ -1,0 +1,3606 @@
+type: panel
+icon: mdi:cog
+path: settings
+cards:
+  - type: custom:button-card
+    show-state: false
+    show-name: false
+    custom_fields:
+      nasctrls:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingsynology
+          default: "off"
+          transition: swap-down
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  entity: button.server_bm_reboot
+                  show_state: false
+                  name: Restart
+                  icon: mdi:restart
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.8);
+                        box-shadow: 
+                          0px 4px 10px rgba(0, 0, 0, 0.8),
+                          inset 0px 0px 10px rgb(200, 200, 255, 0.8),
+                          0px 0px 5px rgba(0, 0, 0, 0.8);
+                      }
+                - type: custom:button-card
+                  entity: button.server_bm_shutdown
+                  show_state: false
+                  name: Shutdown
+                  icon: mdi:power-cycle
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.8);
+                        box-shadow: 
+                          0px 4px 10px rgba(0, 0, 0, 0.8),
+                          inset 0px 0px 10px rgb(200, 200, 255, 0.8),
+                          0px 0px 5px rgba(0, 0, 0, 0.8);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      volume2:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingsynology
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    disk:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_volume_2_volume_gebruikt
+                        name: Disk Space
+                        icon: mdi:harddisk
+                        show_icon: true
+                        show_label: true
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 160px
+                            - width: 140px
+                            - background: |
+                                [[[ 
+                                  const percentFree = states['sensor.server_bm_volume_2_volume_gebruikt'] ? parseFloat(states['sensor.server_bm_volume_2_volume_gebruikt'].state) : 0;
+                                  const percentUsed = 100 - percentFree;
+                                  return `linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, rgba(234, 38, 138, 1) ${percentUsed}%, rgba(255, 255, 255, 0.2) ${percentUsed}%, rgba(255, 255, 255, 0.2) 100%)`; 
+                                ]]]
+                            - border-radius: 15px
+                            - overflow: hidden
+                            - position: relative
+                            - box-shadow: >
+                                0px 4px 10px rgba(0, 0, 0, 0.8),  inset 0px 0px
+                                10px rgba(200, 200, 255, 0.2),  0px 0px 5px
+                                rgba(0, 0, 0, 0.8)
+                            - color: rgb(227, 253, 252)
+                          icon:
+                            - height: 100px
+                            - width: 100px
+                            - color: null
+                            - position: absolute
+                            - top: 30px
+                            - left: 10px
+                          label:
+                            - position: absolute
+                            - top: 10px
+                            - left: 120px
+                            - font-size: 15px
+                            - font-weight: bold
+                            - text-shadow: 1px 1px 3px black
+                            - writing-mode: vertical-rl
+                            - text-align: center
+                        styles_name:
+                          - position: absolute
+                          - top: 10px
+                          - right: 10px
+                          - font-size: 20px
+                          - color: rgb(227, 253, 252)
+                          - text-shadow: 1px 1px 3px black
+                        label: |
+                          [[[ 
+                            const state = states['sensor.server_bm_volume_2_volume_gebruikt'] ? states['sensor.server_bm_volume_2_volume_gebruikt'].state : 'N/A';
+                            return `Free Space: ${state}%`; 
+                          ]]]
+                                  
+                    temp:
+                      card:
+                        type: custom:mini-graph-card
+                        name: Temperature
+                        entities:
+                          - entity: >-
+                              sensor.server_bm_volume_2_gemiddelde_schijftemperatuur
+                            name: Temperature
+                        hours_to_show: 24
+                        points_per_hour: 1
+                        height: 100
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 15
+                            color: "#1ffd61"
+                          - value: 25
+                            color: "#ff9800"
+                          - value: 35
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 160px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }                          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_volume_2_status
+                        name: Status
+                        layout: name_state
+                        icon: mdi:status
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 50px
+                            - width: 200px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: >-
+                                0 0 10px 5px rgb(31, 253, 97); inset 0px 0px
+                                10px rgba(255, 255, 255, 0.4)';
+                            - color: rgb(227, 253, 252)
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        icon: mdi:harddisk
+                        name: Volume 2
+                        size: 60px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 15px
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          state:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 345px
+                      - height: 280px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 0, 0, 0.8), inset 0px 0px 10px
+                          rgba(200, 200, 255, 0.8), 0px 0px 5px rgba(0, 0, 0,
+                          0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      disk:
+                        - position: absolute
+                        - top: 105px
+                        - left: 195px
+                        - width: 200px
+                        - height: 150px
+                        - border-radius: 15%
+                      temp:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 130px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      volume1:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingsynology
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    disk:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_volume_1_volume_gebruikt
+                        name: Disk Space
+                        icon: mdi:harddisk
+                        show_icon: true
+                        show_label: true
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 160px
+                            - width: 140px
+                            - background: |
+                                [[[ 
+                                  const percentFree = states['sensor.server_bm_volume_1_volume_gebruikt'] ? parseFloat(states['sensor.server_bm_volume_1_volume_gebruikt'].state) : 0;
+                                  const percentUsed = 100 - percentFree;
+                                  return `linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, rgba(234, 38, 138, 1) ${percentUsed}%, rgba(255, 255, 255, 0.2) ${percentUsed}%, rgba(255, 255, 255, 0.2) 100%)`; 
+                                ]]]
+                            - border-radius: 15px
+                            - overflow: hidden
+                            - position: relative
+                            - box-shadow: >
+                                0px 4px 10px rgba(0, 0, 0, 0.8),  inset 0px 0px
+                                10px rgba(200, 200, 255, 0.2),  0px 0px 5px
+                                rgba(0, 0, 0, 0.8)
+                            - color: rgb(227, 253, 252)
+                          icon:
+                            - height: 100px
+                            - width: 100px
+                            - color: null
+                            - position: absolute
+                            - top: 30px
+                            - left: 10px
+                          label:
+                            - position: absolute
+                            - top: 10px
+                            - left: 120px
+                            - font-size: 15px
+                            - font-weight: bold
+                            - text-shadow: 1px 1px 3px black
+                            - writing-mode: vertical-rl
+                            - text-align: center
+                        styles_name:
+                          - position: absolute
+                          - top: 10px
+                          - right: 10px
+                          - font-size: 20px
+                          - color: rgb(227, 253, 252)
+                          - text-shadow: 1px 1px 3px black
+                        label: |
+                          [[[ 
+                            const state = states['sensor.server_bm_volume_1_volume_gebruikt'] ? states['sensor.server_bm_volume_1_volume_gebruikt'].state : 'N/A';
+                            return `Free Space: ${state}%`; 
+                          ]]]
+                                  
+                    temp:
+                      card:
+                        type: custom:mini-graph-card
+                        name: Temperature
+                        entities:
+                          - entity: >-
+                              sensor.server_bm_volume_1_gemiddelde_schijftemperatuur
+                            name: Temperature
+                        hours_to_show: 24
+                        points_per_hour: 1
+                        height: 100
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 15
+                            color: "#1ffd61"
+                          - value: 25
+                            color: "#ff9800"
+                          - value: 35
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 160px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }                          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_volume_1_status
+                        name: Status
+                        layout: name_state
+                        icon: mdi:status
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 50px
+                            - width: 200px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: >-
+                                0 0 10px 5px rgb(31, 253, 97); inset 0px 0px
+                                10px rgba(255, 255, 255, 0.4)';
+                            - color: rgb(227, 253, 252)
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        icon: mdi:harddisk
+                        name: Volume 1
+                        size: 60px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 15px
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          state:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 345px
+                      - height: 280px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 0, 0, 0.8), inset 0px 0px 10px
+                          rgba(200, 200, 255, 0.8), 0px 0px 5px rgba(0, 0, 0,
+                          0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      disk:
+                        - position: absolute
+                        - top: 105px
+                        - left: 195px
+                        - width: 200px
+                        - height: 150px
+                        - border-radius: 15%
+                      temp:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 130px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      synology:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingsynology
+          default: "off"
+          transition: swap-up
+          transition_time: 750
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    update:
+                      card:
+                        type: custom:button-card
+                        entity: update.server_bm_dsm_update
+                        show_state: true
+                        name: Update
+                        icon: mdi:update
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    download:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_download_doorvoer
+                        show_state: true
+                        name: download
+                        icon: mdi:download
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    upload:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.server_bm_upload_doorvoer
+                        show_state: true
+                        name: Upload
+                        icon: mdi:upload
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    load15:
+                      card:
+                        type: custom:mini-graph-card
+                        entities:
+                          - entity: sensor.server_bm_gemiddelde_cpu_belasting_15_min
+                            name: Load 15min
+                        hours_to_show: 12
+                        points_per_hour: 2
+                        height: 140
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    load1:
+                      card:
+                        type: custom:mini-graph-card
+                        entities:
+                          - entity: sensor.server_bm_gemiddelde_cpu_belasting_1_min
+                            name: Load 1min
+                        hours_to_show: 12
+                        points_per_hour: 2
+                        height: 140
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }         
+                    cpu:
+                      card:
+                        type: custom:mini-graph-card
+                        entities:
+                          - entity: sensor.server_bm_cpu_gebruik_gebruiker
+                            name: CPU
+                        hours_to_show: 12
+                        points_per_hour: 2
+                        height: 140
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }                  
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        name: RAM
+                        entities:
+                          - entity: sensor.server_bm_geheugengebruik_fysiek
+                            name: RAM
+                        hours_to_show: 12
+                        points_per_hour: 2
+                        height: 140
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.nas_uptime
+                        name: Uptime
+                        layout: name_state
+                        icon: mdi:nas
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 240px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: >-
+                                0 0 10px 5px rgb(31, 253, 97); inset 0px 0px
+                                10px rgba(255, 255, 255, 0.4)';
+                            - color: rgb(227, 253, 252)
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 25px
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        entity_picture: /local/pictures/NAS.png
+                        show_entity_picture: true
+                        size: 130px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          state:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 860px
+                      - height: 325px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 0, 0, 0.8), inset 0px 0px 10px
+                          rgba(200, 200, 255, 0.8), 0px 0px 5px rgba(0, 0, 0,
+                          0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      update:
+                        - position: absolute
+                        - top: 10px
+                        - left: 700px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      download:
+                        - position: absolute
+                        - top: 10px
+                        - left: 390px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      upload:
+                        - position: absolute
+                        - top: 10px
+                        - left: 545px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      load15:
+                        - position: absolute
+                        - top: 110px
+                        - left: 650px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      load1:
+                        - position: absolute
+                        - top: 110px
+                        - left: 435px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      cpu:
+                        - position: absolute
+                        - top: 110px
+                        - left: 220px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      ram:
+                        - position: absolute
+                        - top: 110px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 130px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: "-8px"
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      unifibadge:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingunifi
+          default: "off"
+          transition: swap-down
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  entity: sensor.unifi_ap_beneden_state
+                  name: Controller
+                  entity_picture: /local/pictures/pngwing.com.png
+                  show_entity_picture: true
+                  size: 50px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 110px
+                      - height: 100px
+                      - background: rgb(227, 253, 252)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 165, 222, 0.9), inset 0px 0px
+                          10px rgba(225, 245, 255, 0.4), 0px 0px 5px rgba(0,
+                          165, 222, 0.9)
+                      - border-radius: 20px
+                    name:
+                      - color: rgba(0, 165, 222, 0.9)
+                      - font-size: 20px
+                      - font-weight: bold
+                  tap_action:
+                    action: url
+                    url_path: >-
+                      https://192.168.1.196:8443/manage/account/login?redirect=%2Fmanage
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ap2:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingunifi
+          default: "off"
+          transition: swap-down
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    restart:
+                      card:
+                        type: custom:button-card
+                        entity: button.unifi_ap_boven_restart
+                        show_state: false
+                        name: Restart
+                        icon: mdi:power-cycle
+                        size: 80px
+                        layout: vertical
+                        styles:
+                          card:
+                            - padding: 5px
+                            - width: 90px
+                            - height: 90px
+                            - border-radius: 20px
+                            - margin-right: 20px
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent;
+                              border-radius: 10px;
+                              --primary-text-color: rgba(31, 186, 253, 0.9);
+                              box-shadow: 
+                                0px 4px 10px rgba(31, 186, 253, 0.9),
+                                inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                                0px 0px 5px rgba(31, 186, 253, 0.9);
+                            }
+                                    
+                    clients:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_ap_boven_clients
+                        name: Clients
+                        icon: mdi:human
+                        show_state: true
+                        layout: icon_name_state
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 50px
+                            - width: 180px
+                            - border-radius: 20px
+                            - border: true
+                            - padding: 0px
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        name: RAM/CPU
+                        entities:
+                          - entity: sensor.unifi_ap_boven_memory_utilization
+                            name: RAM
+                          - entity: sensor.unifi_ap_boven_cpu_utilization
+                            name: CPU
+                        hours_to_show: 144
+                        points_per_hour: 10
+                        height: 110
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_ap_boven_uptime_humanized
+                        name: Uptime
+                        layout: name_state
+                        icon: mdi:switch
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 240px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: |
+                                [[[
+                                  if (states['sensor.unifi_ap_boven_state'].state === 'connected') {
+                                    return '0 0 10px 5px #1ffd61, inset 0px 0px 10px rgba(255, 255, 255, 0.4)';
+                                  } else {
+                                    return '0 0 15px 5px rgba(253, 49, 31, 0.7)';
+                                  }
+                                ]]]
+                            - animation: |
+                                [[[
+                                  if (states['sensor.unifi_ap_boven_state'].state !== 'connected') {
+                                    return 'blink 1s linear infinite';
+                                  } else {
+                                    return 'none';
+                                  }
+                                ]]]
+                                name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                        extra_styles: |
+                          @keyframes blink {
+                            50% {
+                              opacity: 0;
+                            }
+                          }
+                          @keyframes blink-shadow {
+                            0% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                            50% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0);
+                            }
+                            100% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                          }
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        entity_picture: /local/pictures/ap.png
+                        name: AP Boven
+                        show_entity_picture: true
+                        size: 70px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          state:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 430px
+                      - height: 300px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 165, 222, 0.9), inset 0px 0px
+                          10px rgba(225, 245, 255, 0.4), 0px 0px 5px rgba(0,
+                          165, 222, 0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      restart:
+                        - position: absolute
+                        - top: 180px
+                        - left: 275px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      clients:
+                        - position: absolute
+                        - top: 120px
+                        - left: 225px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      ram:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 160px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ap1:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingunifi
+          default: "off"
+          transition: swap-down
+          transition_time: 750
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    restart:
+                      card:
+                        type: custom:button-card
+                        entity: button.unifi_ap_beneden_restart
+                        show_state: false
+                        name: Restart
+                        icon: mdi:power-cycle
+                        size: 80px
+                        layout: vertical
+                        styles:
+                          card:
+                            - padding: 5px
+                            - width: 90px
+                            - height: 90px
+                            - border-radius: 20px
+                            - margin-right: 20px
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent;
+                              border-radius: 10px;
+                              --primary-text-color: rgba(31, 186, 253, 0.9);
+                              box-shadow: 
+                                0px 4px 10px rgba(31, 186, 253, 0.9),
+                                inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                                0px 0px 5px rgba(31, 186, 253, 0.9);
+                            }
+                                    
+                    clients:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_ap_beneden_clients
+                        name: Clients
+                        icon: mdi:human
+                        show_state: true
+                        layout: icon_name_state
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 50px
+                            - width: 180px
+                            - border-radius: 20px
+                            - border: true
+                            - padding: 0px
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        name: RAM/CPU
+                        entities:
+                          - entity: sensor.unifi_ap_beneden_memory_utilization
+                            name: RAM
+                          - entity: sensor.unifi_ap_beneden_cpu_utilization
+                            name: CPU
+                        hours_to_show: 144
+                        points_per_hour: 10
+                        height: 110
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_ap_beneden_uptime_humanized
+                        name: Uptime
+                        layout: name_state
+                        icon: mdi:switch
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 240px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: |
+                                [[[
+                                  if (states['sensor.unifi_ap_beneden_state'].state === 'connected') {
+                                    return '0 0 10px 5px #1ffd61, inset 0px 0px 10px rgba(255, 255, 255, 0.4)';
+                                  } else {
+                                    return '0 0 15px 5px rgba(253, 49, 31, 0.7)';
+                                  }
+                                ]]]
+                            - animation: |
+                                [[[
+                                  if (states['sensor.unifi_ap_beneden_state'].state !== 'connected') {
+                                    return 'blink 1s linear infinite';
+                                  } else {
+                                    return 'none';
+                                  }
+                                ]]]
+                                name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                        extra_styles: |
+                          @keyframes blink {
+                            50% {
+                              opacity: 0;
+                            }
+                          }
+                          @keyframes blink-shadow {
+                            0% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                            50% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0);
+                            }
+                            100% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                          }
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        entity_picture: /local/pictures/ap.png
+                        show_entity_picture: true
+                        name: AP Beneden
+                        size: 70px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                          state:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 430px
+                      - height: 300px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 165, 222, 0.9), inset 0px 0px
+                          10px rgba(225, 245, 255, 0.4), 0px 0px 5px rgba(0,
+                          165, 222, 0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      restart:
+                        - position: absolute
+                        - top: 180px
+                        - left: 275px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      clients:
+                        - position: absolute
+                        - top: 120px
+                        - left: 225px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      ram:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 160px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      switch:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingunifi
+          default: "off"
+          transition: swap-down
+          transition_time: 750
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    restart:
+                      card:
+                        type: custom:button-card
+                        entity: button.unifi_poe_switch_16_restart
+                        show_state: false
+                        name: Restart
+                        icon: mdi:power-cycle
+                        size: 80px
+                        layout: vertical
+                        styles:
+                          card:
+                            - padding: 5px
+                            - width: 90px
+                            - height: 90px
+                            - border-radius: 20px
+                            - margin-right: 20px
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: transparent;
+                              border-radius: 10px;
+                              --primary-text-color: rgba(31, 186, 253, 0.9);
+                              box-shadow: 
+                                0px 4px 10px rgba(31, 186, 253, 0.9),
+                                inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                                0px 0px 5px rgba(31, 186, 253, 0.9);
+                            }
+                                    
+                    clients:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_poe_switch_16_clients
+                        name: Clients
+                        icon: mdi:human
+                        show_state: true
+                        layout: icon_name_state
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 50px
+                            - width: 180px
+                            - border-radius: 20px
+                            - border: true
+                            - padding: 15px
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        name: RAM/CPU
+                        entities:
+                          - entity: sensor.unifi_poe_switch_16_memory_utilization
+                            name: RAM
+                          - entity: sensor.unifi_poe_switch_16_cpu_utilization
+                            name: CPU
+                        hours_to_show: 144
+                        points_per_hour: 10
+                        height: 110
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.unifi_ap_poe_switch_uptime_humanized
+                        name: Uptime
+                        layout: name_state
+                        icon: mdi:switch
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 240px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: |
+                                [[[
+                                  if (states['sensor.uxg_lite_state'].state === 'connected') {
+                                    return '0 0 10px 5px #1ffd61, inset 0px 0px 10px rgba(255, 255, 255, 0.4)';
+                                  } else {
+                                    return '0 0 15px 5px rgba(253, 49, 31, 0.7)';
+                                  }
+                                ]]]
+                            - animation: |
+                                [[[
+                                  if (states['sensor.uxg_lite_state'].state !== 'connected') {
+                                    return 'blink 1s linear infinite';
+                                  } else {
+                                    return 'none';
+                                  }
+                                ]]]
+                                name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                        extra_styles: |
+                          @keyframes blink {
+                            50% {
+                              opacity: 0;
+                            }
+                          }
+                          @keyframes blink-shadow {
+                            0% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                            50% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0);
+                            }
+                            100% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                          }
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        entity_picture: /local/pictures/poeswitch.png
+                        show_entity_picture: true
+                        size: 150px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                          name:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(31, 186, 253, 0.9)
+                          state:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 430px
+                      - height: 300px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 165, 222, 0.9), inset 0px 0px
+                          10px rgba(225, 245, 255, 0.4), 0px 0px 5px rgba(0,
+                          165, 222, 0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      restart:
+                        - position: absolute
+                        - top: 180px
+                        - left: 275px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      clients:
+                        - position: absolute
+                        - top: 120px
+                        - left: 225px
+                        - width: 80px
+                        - height: 100px
+                        - border-radius: 15%
+                      ram:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 160px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      uxg:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingunifi
+          default: "off"
+          transition: swap-down
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        name: RAM/CPU
+                        entities:
+                          - entity: sensor.uxg_lite_memory_utilization
+                            name: RAM
+                          - entity: sensor.uxg_lite_cpu_utilization
+                            name: CPU
+                        hours_to_show: 4
+                        points_per_hour: 4
+                        height: 110
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }          
+                    temperature:
+                      card:
+                        type: custom:mini-graph-card
+                        name: Temperature
+                        entities:
+                          - entity: sensor.uxg_lite_uxg_lite_cpu_temperature
+                        hours_to_show: 4
+                        points_per_hour: 4
+                        height: 175
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 25
+                            color: "#1ffd61"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 75
+                            color: "#fd311f"
+                        show:
+                          name: true
+                          icon: false
+                          extrema: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 200px;
+                              background: transparent;
+                              border: true;
+                              border-radius: 20px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }
+                    uptime:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.uxg_lite_uptime_humanized
+                        name: Uptime
+                        layout: name_state
+                        icon: mdi:router-network
+                        show_name: true
+                        show_state: true
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 240px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 10px
+                            - box-shadow: |
+                                [[[
+                                  if (states['sensor.uxg_lite_state'].state === 'connected') {
+                                    return '0 0 10px 5px #1ffd61, inset 0px 0px 10px rgba(255, 255, 255, 0.4)';
+                                  } else {
+                                    return '0 0 15px 5px rgba(253, 49, 31, 0.7)';
+                                  }
+                                ]]]
+                            - animation: |
+                                [[[
+                                  if (states['sensor.uxg_lite_state'].state !== 'connected') {
+                                    return 'blink 1s linear infinite';
+                                  } else {
+                                    return 'none';
+                                  }
+                                ]]]
+                                name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                        extra_styles: |
+                          @keyframes blink {
+                            50% {
+                              opacity: 0;
+                            }
+                          }
+                          @keyframes blink-shadow {
+                            0% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                            50% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0);
+                            }
+                            100% {
+                              box-shadow: 0 0 15px 5px rgba(253, 49, 31, 0.7);
+                            }
+                          }
+                    uxg:
+                      card:
+                        type: custom:button-card
+                        entity_picture: /local/pictures/uxg.png
+                        show_entity_picture: true
+                        size: 150px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 120px
+                            - width: 140px
+                            - border-radius: 20px
+                            - border: none
+                            - padding: 5px
+                          name:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(31, 186, 253, 0.9)
+                          state:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 430px
+                      - height: 300px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(0, 165, 222, 0.9), inset 0px 0px
+                          10px rgba(225, 245, 255, 0.4), 0px 0px 5px rgba(0,
+                          165, 222, 0.9)
+                      - border-radius: 20px
+                    custom_fields:
+                      ram:
+                        - position: absolute
+                        - top: 120px
+                        - left: 220px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      temperature:
+                        - position: absolute
+                        - top: 120px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uptime:
+                        - position: absolute
+                        - top: 20px
+                        - left: 160px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      uxg:
+                        - position: absolute
+                        - top: 0px
+                        - left: 2px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: transparent;
+                        border-radius: 20px;
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      version:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-down
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    boot:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.system_monitor_last_boot
+                        show_state: true
+                        name: Last Boot
+                        icon: mdi:information
+                        size: 80px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 243px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(31, 186, 253, 0.9)
+                          state:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                    version2:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.home_assistant_operating_system_nieuwste_versie
+                        show_state: true
+                        name: Last
+                        icon: mdi:home-assistant
+                        size: 150px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(31, 186, 253, 0.9)
+                          state:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                    version:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.home_assistant_operating_system_versie
+                        show_state: true
+                        name: Current
+                        icon: mdi:home-assistant
+                        size: 150px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(31, 186, 253, 0.9)
+                          state:
+                            - color: rgba(31, 186, 253, 0.9)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 260px
+                      - height: 180px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(255, 204, 102, 0.6), inset 0px 0px
+                          10px rgba(255, 204, 102, 0.4), 0px 0px 5px rgba(255,
+                          255, 255, 0.3)
+                      - border-radius: 20px
+                    custom_fields:
+                      boot:
+                        - position: absolute
+                        - top: 5px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      version2:
+                        - position: absolute
+                        - top: 90px
+                        - left: 130px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      version:
+                        - position: absolute
+                        - top: 90px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      cloudflared:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:mini-graph-card
+                  name: Studio Code
+                  entities:
+                    - entity: sensor.studio_code_server_geheugenpercentage
+                      name: RAM
+                      color: "#af1ffd"
+                    - entity: sensor.studio_code_server_cpu_percentage
+                      name: CPU
+                      color: "#fdd81f"
+                  hours_to_show: 1
+                  points_per_hour: 10
+                  height: 100
+                  animate: true
+                  line_width: 2.5
+                  show:
+                    name: true
+                    icon: false
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 160px;
+                        height: 120px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      dsmr:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:mini-graph-card
+                  name: DSMR
+                  entities:
+                    - entity: sensor.dsmr_reader_geheugenpercentage
+                      name: RAM
+                      color: "#af1ffd"
+                    - entity: sensor.dsmr_reader_cpu_percentage
+                      name: CPU
+                      color: "#fdd81f"
+                  hours_to_show: 1
+                  points_per_hour: 10
+                  height: 100
+                  animate: true
+                  line_width: 2.5
+                  show:
+                    name: true
+                    icon: false
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 160px;
+                        height: 120px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      ma:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:mini-graph-card
+                  name: Music Assistant
+                  entities:
+                    - entity: sensor.music_assistant_server_geheugenpercentage
+                      name: RAM
+                      color: "#af1ffd"
+                    - entity: sensor.music_assistant_server_cpu_percentage
+                      name: CPU
+                      color: "#fdd81f"
+                  hours_to_show: 1
+                  points_per_hour: 10
+                  height: 100
+                  animate: true
+                  line_width: 2.5
+                  show:
+                    name: true
+                    icon: false
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 160px;
+                        height: 120px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      adguard:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:mini-graph-card
+                  name: Adguard
+                  entities:
+                    - entity: sensor.adguard_home_geheugenpercentage
+                      name: RAM
+                      color: "#af1ffd"
+                    - entity: sensor.adguard_home_cpu_percentage
+                      name: CPU
+                      color: "#fdd81f"
+                  hours_to_show: 1
+                  points_per_hour: 10
+                  height: 100
+                  animate: true
+                  line_width: 2.5
+                  show:
+                    name: true
+                    icon: false
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 160px;
+                        height: 120px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      hacontrols2:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  entity: button.tab_a9_van_benji_herstart_apparaat
+                  show_state: false
+                  name: Tab Restart
+                  icon: mdi:tablet-dashboard
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.9);
+                        box-shadow: 
+                          0px 4px 10px rgba(31, 186, 253, 0.9),
+                          inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                          0px 0px 5px rgba(31, 186, 253, 0.9);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      hacontrols:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  entity: button.homeassistant_restart
+                  show_state: false
+                  name: HA Restart
+                  icon: mdi:power-cycle
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.9);
+                        box-shadow: 
+                          0px 4px 10px rgba(31, 186, 253, 0.9),
+                          inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                          0px 0px 5px rgba(31, 186, 253, 0.9);
+                      }
+                - type: custom:button-card
+                  entity: button.homeassistant_reload
+                  show_state: false
+                  name: HA Reload
+                  icon: mdi:reload
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.9);
+                        box-shadow: 
+                          0px 4px 10px rgba(31, 186, 253, 0.9),
+                          inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                          0px 0px 5px rgba(31, 186, 253, 0.9);
+                      }
+                - type: custom:button-card
+                  entity: button.tab_a9_van_benji_load_start_url
+                  show_state: false
+                  name: Home
+                  icon: mdi:refresh
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.9);
+                        box-shadow: 
+                          0px 4px 10px rgba(31, 186, 253, 0.9),
+                          inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                          0px 0px 5px rgba(31, 186, 253, 0.9);
+                      }
+                - type: custom:button-card
+                  entity: button.tab_a9_van_benji_herstart_browser
+                  show_state: false
+                  name: Browser
+                  icon: mdi:web
+                  size: 80px
+                  layout: vertical
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 100px
+                      - height: 100px
+                      - backdrop-filter: blur(50px)
+                      - border-radius: 20px
+                      - margin-right: 20px
+                  card_mod:
+                    style: |
+                      ha-card {
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgba(31, 186, 253, 0.9);
+                        box-shadow: 
+                          0px 4px 10px rgba(31, 186, 253, 0.9),
+                          inset 0px 0px 10px rgb(227, 253, 252, 0.4),
+                          0px 0px 5px rgba(31, 186, 253, 0.9);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      hadisk:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  entity: sensor.disk_free_percentage
+                  name: Disk Space
+                  icon: mdi:harddisk
+                  show_icon: true
+                  show_label: true
+                  show_name: false
+                  styles:
+                    card:
+                      - height: 185px
+                      - width: 160px
+                      - background: |
+                          [[[ 
+                            const percentFree = states['sensor.disk_free_percentage'] ? parseFloat(states['sensor.disk_free_percentage'].state) : 0;
+                            const percentUsed = 100 - percentFree;
+                            return `linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, rgba(234, 38, 138, 1) ${percentUsed}%, rgba(255, 255, 255, 0.2) ${percentUsed}%, rgba(255, 255, 255, 0.2) 100%)`; 
+                          ]]]
+                      - border-radius: 15px
+                      - backdrop-filter: blur(50px)
+                      - overflow: hidden
+                      - position: relative
+                      - box-shadow: >
+                          0px 4px 10px rgba(255, 204, 102, 0.6),  inset 0px 0px
+                          10px rgba(255, 204, 102, 0.4),  0px 0px 5px rgba(255,
+                          255, 255, 0.3)
+                      - color: rgb(227, 253, 252)
+                    icon:
+                      - height: 100px
+                      - width: 100px
+                      - color: null
+                      - position: absolute
+                      - top: 30px
+                      - left: 10px
+                    label:
+                      - position: absolute
+                      - top: 10px
+                      - left: 120px
+                      - font-size: 20px
+                      - font-weight: bold
+                      - text-shadow: 1px 1px 3px black
+                      - writing-mode: vertical-rl
+                      - text-align: center
+                  styles_name:
+                    - position: absolute
+                    - top: 10px
+                    - right: 10px
+                    - font-size: 20px
+                    - color: rgb(227, 253, 252)
+                    - text-shadow: 1px 1px 3px black
+                  label: |
+                    [[[ 
+                      const state = states['sensor.disk_free_percentage'] ? states['sensor.disk_free_percentage'].state : 'N/A';
+                      return `Free Space: ${state}%`; 
+                    ]]]
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      menuicon:
+        card:
+          type: custom:button-card
+          entity: input_boolean.settingmenu
+          icon: mdi:menu
+          show_name: false
+          show_state: false
+          tap_action:
+            action: toggle
+          styles:
+            card:
+              - background: transparent
+              - height: 100px
+              - width: 100px
+              - border: none
+            icon:
+              - height: 70px
+              - width: 70px
+          state:
+            - value: "on"
+              styles:
+                icon:
+                  - color: rgba(255, 255, 255, 0.2)
+                  - height: 0px
+            - value: "off"
+              styles:
+                icon:
+                  - color: rgb(227, 253, 252)
+      hastats:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 1250
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    entities:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.count_entitiies
+                        show_state: true
+                        name: Entities
+                        icon: mdi:matrix
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    sensors:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.count_sensor
+                        show_state: true
+                        name: Sensors
+                        icon: mdi:chip
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    booleans:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.count_boolean
+                        show_state: true
+                        name: Booleans
+                        icon: mdi:toggle-switch
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                    yaml:
+                      card:
+                        type: custom:button-card
+                        entity: input_number.yaml_line
+                        show_state: true
+                        name: YAML
+                        icon: mdi:code-braces
+                        size: 100px
+                        layout: vertical
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 80px
+                            - width: 150px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                          icon:
+                            - color: rgba(234, 38, 138, 1)
+                          state:
+                            - color: rgba(234, 38, 138, 1)
+                            - font-size: 20px
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 172px
+                      - height: 370px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: >
+                          0px 4px 10px rgba(255, 204, 102, 0.6), inset 0px 0px
+                          10px rgba(255, 204, 102, 0.4), 0px 0px 5px rgba(255,
+                          255, 255, 0.3)
+                      - border-radius: 20px
+                    custom_fields:
+                      entities:
+                        - position: absolute
+                        - top: 280px
+                        - left: 10px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      sensors:
+                        - position: absolute
+                        - top: 190px
+                        - left: 10px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      booleans:
+                        - position: absolute
+                        - top: 100px
+                        - left: 10px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      yaml:
+                        - position: absolute
+                        - top: 10px
+                        - left: 10px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                  card_mod:
+                    style: |
+                      ha-card {
+                        width: 200px;
+                        height: 100px;
+                        background: rgba(255, 255, 255, 0.15);
+                        backdrop-filter: blur(50px);
+                        border-radius: 10px;
+                        --primary-text-color: rgb(227, 253, 252);
+                        box-shadow: 
+                          0px 4px 10px rgba(255, 204, 102, 0.6),
+                          inset 0px 0px 10px rgba(255, 204, 102, 0.4),
+                          0px 0px 5px rgba(255, 255, 255, 0.3);
+                      }
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      homeassistant:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingha
+          default: "off"
+          transition: swap-up
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    load1:
+                      card:
+                        type: custom:mini-graph-card
+                        name: Load 15 min
+                        entities:
+                          - entity: sensor.system_monitor_load_15m
+                            name: 15 min
+                        hours_to_show: 4
+                        points_per_hour: 4
+                        height: 230
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 0
+                            color: "#1fbafd"
+                          - value: 1
+                            color: "#ffa000"
+                          - value: 2
+                            color: "#d32f2f"
+                        show:
+                          name: true
+                          icon: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 100px;
+                              background: rgba(255, 255, 255, 0.15);
+                              backdrop-filter: blur(50px);
+                              border-radius: 10px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            box-shadow: 
+                              0px 4px 10px rgba(255, 204, 102, 0.6), /* Outer golden glow */
+                              inset 0px 0px 10px rgba(255, 204, 102, 0.4), /* Inner golden glow */
+                              0px 0px 5px rgba(255, 255, 255, 0.3); /* Subtle white accent */
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }
+                    load15:
+                      card:
+                        type: custom:mini-graph-card
+                        name: Load 1 min
+                        entities:
+                          - entity: sensor.system_monitor_load_1m
+                            name: 1 min
+                        hours_to_show: 4
+                        points_per_hour: 4
+                        height: 230
+                        animate: true
+                        line_width: 2.5
+                        color_thresholds:
+                          - value: 0
+                            color: "#1fbafd"
+                          - value: 1
+                            color: "#ffa000"
+                          - value: 2
+                            color: "#d32f2f"
+                        show:
+                          name: true
+                          icon: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 100px;
+                              background: rgba(255, 255, 255, 0.15);
+                              backdrop-filter: blur(50px);
+                              border-radius: 10px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            box-shadow: 
+                              0px 4px 10px rgba(255, 204, 102, 0.6), /* Outer golden glow */
+                              inset 0px 0px 10px rgba(255, 204, 102, 0.4), /* Inner golden glow */
+                              0px 0px 5px rgba(255, 255, 255, 0.3); /* Subtle white accent */
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }
+                    internetspeed:
+                      card:
+                        type: custom:mini-graph-card
+                        name: HA Internet Speed
+                        entities:
+                          - entity: input_number.download_speed
+                            color: "#91C0F8"
+                            name: Download
+                          - entity: input_number.upload_speed
+                            color: "#ffa000"
+                            name: Upload
+                        hours_to_show: 144
+                        points_per_hour: 8
+                        height: 160
+                        animate: true
+                        line_width: 2.5
+                        show:
+                          name: true
+                          icon: false
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 100px;
+                              background: rgba(255, 255, 255, 0.15);
+                              backdrop-filter: blur(50px);
+                              border-radius: 10px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            box-shadow: 
+                              0px 4px 10px rgba(255, 204, 102, 0.6), /* Outer golden glow */
+                              inset 0px 0px 10px rgba(255, 204, 102, 0.4), /* Inner golden glow */
+                              0px 0px 5px rgba(255, 255, 255, 0.3); /* Subtle white accent */
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }   
+                    ram:
+                      card:
+                        type: custom:mini-graph-card
+                        entities:
+                          - entity: sensor.system_monitor_memory_use_percent
+                            name: Core
+                          - entity: sensor.home_assistant_supervisor_memory_percent
+                            name: Supervisor
+                        hours_to_show: 24
+                        points_per_hour: 4
+                        hour24: true
+                        animate: true
+                        height: 150
+                        name: RAM 12h
+                        show:
+                          icon: false
+                          name: true
+                        color_thresholds:
+                          - value: 75
+                            color: "#fd311f"
+                          - value: 50
+                            color: "#ff9800"
+                          - value: 25
+                            color: "#1ffd61"
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 100px;
+                              background: rgba(255, 255, 255, 0.15);
+                              backdrop-filter: blur(50px);
+                              border-radius: 10px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            box-shadow: 
+                              0px 4px 10px rgba(255, 204, 102, 0.6), /* Outer golden glow */
+                              inset 0px 0px 10px rgba(255, 204, 102, 0.4), /* Inner golden glow */
+                              0px 0px 5px rgba(255, 255, 255, 0.3); /* Subtle white accent */
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }   
+                    cpu:
+                      card:
+                        type: custom:mini-graph-card
+                        entities:
+                          - sensor.system_monitor_processor_temperature
+                        hours_to_show: 12
+                        points_per_hour: 6
+                        hour24: true
+                        animate: true
+                        height: 100
+                        name: CPU Temperature
+                        show:
+                          extrema: true
+                          icon: false
+                          name: true
+                        color_thresholds:
+                          - value: 85
+                            color: "#fd311f"
+                          - value: 60
+                            color: "#ff9800"
+                          - value: 50
+                            color: "#1ffd61"
+                        card_mod:
+                          style: |
+                            ha-card {
+                              width: 200px;
+                              height: 100px;
+                              background: rgba(255, 255, 255, 0.15);
+                              backdrop-filter: blur(50px);
+                              border-radius: 10px;
+                              --primary-text-color: rgb(227, 253, 252);
+                            box-shadow: 
+                              0px 4px 10px rgba(255, 204, 102, 0.6), /* Outer golden glow */
+                              inset 0px 0px 10px rgba(255, 204, 102, 0.4), /* Inner golden glow */
+                              0px 0px 5px rgba(255, 255, 255, 0.3); /* Subtle white accent */
+                            }
+                            ha-card .states.flex {
+                              padding-bottom: 0px;
+                            }
+                            ha-card .graph {
+                              margin-top: 0px !important;
+                            }
+                            ha-card .graph .graph__legend {
+                              padding-bottom: 0px !important;
+                            }
+                            ha-card .info.flex {
+                              padding-bottom: 0px !important;
+                            }   
+                  styles:
+                    card:
+                      - padding: 22px
+                      - align-self: start
+                      - width: 1200px
+                      - height: 210px
+                      - opacity: 1
+                      - background-color: transparent
+                      - border-radius: 0%
+                    custom_fields:
+                      ram:
+                        - position: absolute
+                        - top: 6px
+                        - left: 15px
+                        - width: 650px
+                        - height: 100px
+                        - border-radius: 15%
+                      cpu:
+                        - position: absolute
+                        - top: 6px
+                        - left: 250px
+                        - width: 350px
+                        - height: 100px
+                        - border-radius: 15%
+                      internetspeed:
+                        - position: absolute
+                        - top: 6px
+                        - left: 485px
+                        - width: 350px
+                        - height: 100px
+                        - border-radius: 15%
+                      load15:
+                        - position: absolute
+                        - top: 6px
+                        - left: 725px
+                        - width: 350px
+                        - height: 100px
+                        - border-radius: 15%
+                      load1:
+                        - position: absolute
+                        - top: 6px
+                        - left: 965px
+                        - width: 350px
+                        - height: 100px
+                        - border-radius: 15%
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+      basismenu:
+        card:
+          type: custom:state-switch
+          entity: input_boolean.settingmenu
+          default: "off"
+          transition: swap-down
+          transition_time: 700
+          states:
+            "on":
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  show-state: false
+                  show-name: false
+                  custom_fields:
+                    automations:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingmenu
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/helper.png
+                        show_entity_picture: true
+                        size: 70%
+                        layout: vertical
+                        tap_action:
+                          action: call-service
+                          service: script.show_automation_helpers_popup
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    synology:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingsynology
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/synology.png
+                        show_entity_picture: true
+                        size: 80%
+                        layout: vertical
+                        tap_action:
+                          action: toggle
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(40%)
+                    wifi:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.majaiden
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/wifi.png
+                        show_entity_picture: true
+                        size: 70%
+                        layout: vertical
+                        tap_action:
+                          action: call-service
+                          service: script.show_free_nachos_popup
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    adguard:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingadguard
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/adguard.png
+                        show_entity_picture: true
+                        size: 60%
+                        layout: vertical
+                        tap_action:
+                          action: call-service
+                          service: script.show_adguard_popup
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    sensors:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingstaakjes
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/sensorbutton.png
+                        show_entity_picture: true
+                        size: 80%
+                        layout: vertical
+                        tap_action:
+                          action: navigate
+                          navigation_path: /dashboard-sonos/checkbutton
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    unifi:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingunifi
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/pngwing.com.png
+                        show_entity_picture: true
+                        size: 40%
+                        layout: vertical
+                        tap_action:
+                          action: toggle
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    ha:
+                      card:
+                        type: custom:button-card
+                        entity: input_boolean.settingha
+                        show_state: false
+                        show_name: false
+                        entity_picture: /local/pictures/hanew.png
+                        show_entity_picture: true
+                        size: 90%
+                        layout: vertical
+                        tap_action:
+                          action: toggle
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          entity_picture:
+                            - filter: brightness(80%)
+                    home:
+                      card:
+                        type: custom:button-card
+                        layout: vertical
+                        icon: mdi:close
+                        tap_action:
+                          action: navigate
+                          navigation_path: /dashboard-galaxytab/home
+                        name: Exit
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                    close:
+                      card:
+                        type: custom:button-card
+                        layout: vertical
+                        icon: mdi:arrow-expand-down
+                        entity: input_boolean.settingmenu
+                        tap_action:
+                          action: toggle
+                        name: Hide Menu
+                        styles:
+                          card:
+                            - background: transparent
+                            - height: 70px
+                            - width: 120px
+                            - border-radius: 20px
+                            - border: null
+                            - padding: 5px
+                            - box-shadow: 0 4px 6px rgba( 0, 0, 0, 0.2)
+                          name:
+                            - color: rgb(227, 253, 252)
+                            - font-size: 20px
+                          icon:
+                            - color: rgb(227, 253, 252)
+                  styles:
+                    card:
+                      - padding: 5px
+                      - width: 1170px
+                      - height: 90px
+                      - background: rgba(255, 255, 255, 0.2)
+                      - backdrop-filter: blur(50px)
+                      - box-shadow: 0 0px 10px rgb(227, 253, 252)
+                      - border-radius: 20px
+                    custom_fields:
+                      home:
+                        - position: absolute
+                        - top: 10px
+                        - left: 1045px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      wifi:
+                        - position: absolute
+                        - top: 10px
+                        - left: 915px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      automations:
+                        - position: absolute
+                        - top: 10px
+                        - left: 785px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      sensors:
+                        - position: absolute
+                        - top: 10px
+                        - left: 655px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      ha:
+                        - position: absolute
+                        - top: 10px
+                        - left: 525px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      adguard:
+                        - position: absolute
+                        - top: 10px
+                        - left: 395px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      unifi:
+                        - position: absolute
+                        - top: 10px
+                        - left: 265px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      synology:
+                        - position: absolute
+                        - top: 10px
+                        - left: 135px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+                      close:
+                        - position: absolute
+                        - top: 10px
+                        - left: 5px
+                        - width: 100px
+                        - height: 100px
+                        - border-radius: 15%
+            "off":
+              type: custom:button-card
+              show_state: false
+              show_name: false
+              show_icon: false
+              styles:
+                card:
+                  - background: transparent
+                  - box-shadow: none
+                  - height: 0px
+    styles:
+      card:
+        - padding: 22px
+        - align-self: start
+        - width: 1270px
+        - height: 740px
+        - opacity: 1
+        - background-color: transparent
+      custom_fields:
+        nasctrls:
+          - position: absolute
+          - top: 370px
+          - left: 620px
+          - width: 500px
+          - height: 100px
+          - border-radius: 15%
+        volume2:
+          - position: absolute
+          - top: 340px
+          - left: 755px
+          - width: 500px
+          - height: 100px
+          - border-radius: 15%
+        volume1:
+          - position: absolute
+          - top: 340px
+          - left: 240px
+          - width: 500px
+          - height: 100px
+          - border-radius: 15%
+        synology:
+          - position: absolute
+          - top: 5px
+          - left: 240px
+          - width: 900px
+          - height: 100px
+          - border-radius: 15%
+        unifibadge:
+          - position: absolute
+          - top: 263px
+          - left: 570px
+          - width: 430px
+          - height: 100px
+          - border-radius: 15%
+          - z-index: 1
+        ap2:
+          - position: absolute
+          - top: 5px
+          - left: 660px
+          - width: 430px
+          - height: 100px
+          - border-radius: 15%
+        ap1:
+          - position: absolute
+          - top: 325px
+          - left: 660px
+          - width: 430px
+          - height: 100px
+          - border-radius: 15%
+        switch:
+          - position: absolute
+          - top: 325px
+          - left: 160px
+          - width: 430px
+          - height: 100px
+          - border-radius: 15%
+        uxg:
+          - position: absolute
+          - top: 5px
+          - left: 160px
+          - width: 430px
+          - height: 100px
+          - border-radius: 15%
+        version:
+          - position: absolute
+          - top: 420px
+          - left: 975px
+          - width: 280px
+          - height: 100px
+          - border-radius: 15%
+        cloudflared:
+          - position: absolute
+          - top: 220px
+          - left: 870px
+          - width: 200px
+          - height: 100px
+          - border-radius: 15%
+        dsmr:
+          - position: absolute
+          - top: 220px
+          - left: 470px
+          - width: 1200px
+          - height: 100px
+          - border-radius: 15%
+        ma:
+          - position: absolute
+          - top: 220px
+          - left: 670px
+          - width: 200px
+          - height: 100px
+          - border-radius: 15%
+        adguard:
+          - position: absolute
+          - top: 220px
+          - left: 270px
+          - width: 200px
+          - height: 100px
+          - border-radius: 15%
+        hacontrols2:
+          - position: absolute
+          - top: 470px
+          - left: 810px
+          - width: 100px
+          - height: 100px
+          - border-radius: 15%
+        hacontrols:
+          - position: absolute
+          - top: 470px
+          - left: 300px
+          - width: 800px
+          - height: 100px
+          - border-radius: 15%
+        hadisk:
+          - position: absolute
+          - top: 220px
+          - left: 1070px
+          - width: 200px
+          - height: 100px
+          - border-radius: 15%
+        hastats:
+          - position: absolute
+          - top: 220px
+          - left: 70px
+          - width: 200px
+          - height: 100px
+          - border-radius: 15%
+        homeassistant:
+          - position: absolute
+          - top: 6px
+          - left: 60px
+          - width: 1200px
+          - height: 100px
+          - border-radius: 15%
+        menuicon:
+          - position: absolute
+          - top: "-15px"
+          - left: "-10px"
+          - width: 150px
+          - height: 150px
+          - border-radius: 15%
+        basismenu:
+          - position: absolute
+          - top: 643px
+          - left: 60px
+          - width: 1200px
+          - height: 100px
+          - border-radius: 15%
+background:
+  opacity: 55
+  alignment: center
+  size: cover
+  repeat: no-repeat
+  attachment: scroll
+  image: /api/image/serve/c18e1ac9e9d17f8119161ede97826db3/original
+
