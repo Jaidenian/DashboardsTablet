@@ -2395,6 +2395,4 @@ cards:
           - border-radius: 55%
 background:
   image: /api/image/serve/e99484961fa0b6cd2fb5acc879169a54/original
-visible:
-  - user: 4a566592414f437ebecd4cd0240c818e
-  - user: f36a71f4c6654b5e893e15ab6118af04
+
